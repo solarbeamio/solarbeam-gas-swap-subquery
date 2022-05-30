@@ -1,0 +1,30 @@
+{
+  "name": "solarbeam-gas-swap-subquery",
+  "version": "1.0.0",
+  "description": "Gas Swap Subquery",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "prepack": "rm -rf dist && npm build",
+    "test": "jest",
+    "codegen": "./node_modules/.bin/subql codegen",
+    "docker": "docker-compose pull && docker-compose up",
+    "all": "yarn codegen && yarn build && yarn docker"
+  },
+  "homepage": "https://github.com/subquery/subql-starter",
+  "repository": "github:subquery/subql-starter",
+  "files": [
+    "dist",
+    "schema.graphql",
+    "project.yaml"
+  ],
+  "author": "Solarbeam",
+  "license": "MIT",
+  "devDependencies": {
+    "@subql/cli": "latest",
+    "@subql/contract-processors": "^0.5.4",
+    "@subql/types": "latest",
+    "ethers": "^5.6.1",
+    "typescript": "^4.1.3"
+  }
+}

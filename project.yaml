@@ -1,0 +1,32 @@
+specVersion: 0.2.0
+name: solarbeam-gas-swap-subquery
+version: 1.0.0
+description: Gas Swap subquery
+repository: ''
+schema:
+  file: ./schema.graphql
+network:
+  genesisHash: '0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b'
+  endpoint: 'wss://moonriver.api.onfinality.io/public-ws'
+  dictionary: 'https://api.subquery.network/sq/subquery/moonriver-dictionary'
+  chaintypes:
+    file: "./types.yaml"
+dataSources:
+  - kind: substrate/Moonbeam
+    startBlock: 915890
+    processor:
+      file: './node_modules/@subql/contract-processors/dist/moonbeam.js'
+      options:
+        abi: gasSwap
+        address: '0x44B288a8258D3bDa04CCdb5d06c72A4dCd295700'
+    assets:
+      gasSwap:
+        file: './abis/gasSwap.json'
+    mapping:
+      file: ./dist/index.js
+      handlers:
+        - handler: handleMetaTransactionEvent
+          kind: substrate/MoonbeamEvent
+          filter:
+            topics:
+              - 'MetaTransactionExecuted(address userAddress, address relayerAddress, bytes functionSignature)'
