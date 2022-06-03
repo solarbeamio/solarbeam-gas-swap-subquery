@@ -21,6 +21,7 @@
   "author": "Solarbeam",
   "license": "MIT",
   "devDependencies": {
+    "@polkadot/api": "^7",
     "@subql/cli": "latest",
     "@subql/contract-processors": "^0.5.4",
     "@subql/types": "latest",
