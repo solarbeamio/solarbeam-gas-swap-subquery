@@ -33,17 +33,16 @@ function decodeFunctionSignature(functionData: string){
 
 export async function handleMetaTransactionEvent(event: MoonbeamEvent<EventArgs>): Promise<void> {
 
-    const hexSignature = event.args.functionSignature;
+    const data = decodeFunctionSignature(event.args.functionSignature);
 
-    if(decodeFunctionSignature(hexSignature)){
+    if(data){
 
         const transaction = new Transaction(event.transactionHash);
-        const { amount, amountOutMin, user, token} = decodeFunctionSignature(hexSignature);
     
-        transaction.amount = amount;
-        transaction.amountOutMin = amountOutMin;
-        transaction.user = user;
-        transaction.token = token;
+        transaction.amount = data.amount;
+        transaction.amountOutMin = data.amountOutMin;
+        transaction.user = data.user;
+        transaction.token = data.token;
     
         await transaction.save();
     }
