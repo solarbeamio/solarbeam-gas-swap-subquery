@@ -2,9 +2,11 @@ type Transaction @entity {
 
   id: ID! # Transaction hash
 
-  amount: BigInt
+  amount: BigInt!
 
-  userAddress: String
+  amountOutMin: BigInt!
 
-  tokenAddress: String
+  user: String!
+
+  token: String!
 }
