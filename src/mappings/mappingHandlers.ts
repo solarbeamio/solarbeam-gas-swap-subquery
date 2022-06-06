@@ -43,6 +43,7 @@ export async function handleMetaTransactionEvent(event: MoonbeamEvent<EventArgs>
         transaction.amountOutMin = data.amountOutMin;
         transaction.user = data.user;
         transaction.token = data.token;
+        transaction.timestamp = BigInt(event.blockTimestamp.getTime());
     
         await transaction.save();
     }

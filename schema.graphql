@@ -9,4 +9,6 @@ type Transaction @entity {
   user: String!
 
   token: String!
+
+  timestamp: BigInt!
 }
